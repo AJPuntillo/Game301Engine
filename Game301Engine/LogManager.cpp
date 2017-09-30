@@ -3,12 +3,9 @@
 using namespace ENGINE;
 
 //Set the instance to NULL so that it initializes
-LogManager* LogManager::m_logManagerInstance = NULL;
+LogManager *LogManager::m_logManagerInstance = nullptr;
 
-LogManager::LogManager() :
-	logFileName("logfile.log"),
-	m_outStream(NULL),
-	m_type(LOG_ERROR)
+LogManager::LogManager()
 {
 	//Empty
 };
@@ -20,7 +17,7 @@ LogManager::~LogManager()
 
 LogManager* LogManager::getInstance()
 {
-	if (m_logManagerInstance == NULL) {
+	if (m_logManagerInstance == nullptr) {
 		m_logManagerInstance = new LogManager();
 	}
 	return m_logManagerInstance;
@@ -34,10 +31,10 @@ void LogManager::openFile(std::string &fileName)
 
 void LogManager::closeFile()
 {
-	if (m_outStream != NULL) {
+	if (m_outStream != nullptr) {
 		m_outStream->close();
 		delete m_outStream;
-		m_outStream = NULL;
+		m_outStream = nullptr;
 	}
 }
 
@@ -57,7 +54,7 @@ void LogManager::log(LogType type, std::string message)
 {
 	if (type <= m_type && m_type > LOG_NONE)
 	{
-		if (m_outStream == NULL)
+		if (m_outStream == nullptr)
 		{
 			openFile(logFileName);
 		}

@@ -1,3 +1,10 @@
+//Andrew Puntillo
+//---
+//Log Manager Class:
+//Singleton class that manages logs and stores them into a text file for later viewing.
+//Can filter the type of logs that will be recorded.
+//---
+
 #pragma once
 #ifndef LOGMANAGER_H
 #define LOGMANAGER_H
@@ -14,7 +21,7 @@ namespace ENGINE
 	public:
 		//Log type enumeration
 		enum LogType {LOG_NONE, LOG_ERROR, LOG_WARN, LOG_TRACE, LOG_INFO};
-		std::string logFileName;
+		std::string logFileName = "logfile.log";
 
 		~LogManager();
 
@@ -37,8 +44,8 @@ namespace ENGINE
 		LogManager();
 
 		static LogManager *m_logManagerInstance;
-		std::ofstream *m_outStream;
-		LogType m_type;
+		std::ofstream *m_outStream = nullptr;
+		LogType m_type = LOG_ERROR;
 	};
 
 }
