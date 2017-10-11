@@ -29,8 +29,9 @@ namespace ENGINE
 		Shader* triangleShader;
 		Mesh* triangleMesh;
 		VertexDescriptor* vertexDescriptor;
+
 		ResourceManager<Mesh>* manager;
-		ResourceHandle<Mesh>* _handle;
+		ResourceHandle<Mesh> handle;
 	};
 
 }
