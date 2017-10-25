@@ -10,6 +10,7 @@
 
 #include <GL/glew.h>
 #include "Shader.h"
+#include "ResourceManager.h"
 
 namespace ENGINE
 {
@@ -21,7 +22,7 @@ namespace ENGINE
 		AbstractRenderer() {};
 		virtual ~AbstractRenderer() {};
 
-		virtual void renderPrimitive() = 0;
+		virtual void renderPrimitive(Shader* shader, ResourceHandle<Mesh> handle) = 0;
 	};
 
 }

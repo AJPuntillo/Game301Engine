@@ -8,7 +8,6 @@
 #ifndef OPENGLRENDERER_H
 #define OPENGLRENDERER_H
 
-#include "AbstractRenderer.h"
 #include "ResourceManager.h"
 #include "Mesh.h"
 #include "Vertex.h"
@@ -16,22 +15,22 @@
 namespace ENGINE
 {
 
-	class OpenGLRenderer : AbstractRenderer
+	class OpenGLRenderer
 	{
 	public:
 		OpenGLRenderer();
-		virtual ~OpenGLRenderer();
+		~OpenGLRenderer();
 
-		virtual void renderPrimitive();
+		void renderPrimitive(ResourceHandle<Shader> shader, ResourceHandle<Mesh> mesh);
+
+		//Getters
+		ResourceManager<Mesh>* getMeshManager() { return meshManager; }
+		ResourceManager<Shader>* getShaderManager() { return shaderManager; }
 
 	private:
-		GLuint m_VAO, m_VBO;
-		Shader* triangleShader;
-		Mesh* triangleMesh;
-		VertexDescriptor* vertexDescriptor;
-
-		ResourceManager<Mesh>* manager;
-		ResourceHandle<Mesh> handle;
+		//Resource Managers
+		ResourceManager<Mesh>* meshManager;
+		ResourceManager<Shader>* shaderManager;
 	};
 
 }

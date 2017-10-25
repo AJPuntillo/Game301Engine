@@ -5,22 +5,17 @@ using namespace ENGINE;
 
 OpenGLRenderer::OpenGLRenderer()
 {
-	triangleShader = new Shader("D:/Year 3 - Semester 5/Game 301 - Game Engine Design/Game301Engine/Game301Engine/Shaders/Shader_Vert.vs", "D:/Year 3 - Semester 5/Game 301 - Game Engine Design/Game301Engine/Game301Engine/Shaders/Shader_Frag.vs");
-	triangleMesh = new Mesh();
-
-	manager = new ResourceManager<Mesh>;
-	handle = manager->put(std::string("triangle"), triangleMesh);
+	meshManager = new ResourceManager<Mesh>();
+	shaderManager = new ResourceManager<Shader>();
 }
 
 OpenGLRenderer::~OpenGLRenderer()
 {
-	delete triangleMesh;
-	delete triangleShader;
-	delete vertexDescriptor;
+
 }
 
-void OpenGLRenderer::renderPrimitive()
+void OpenGLRenderer::renderPrimitive(ResourceHandle<Shader> shader, ResourceHandle<Mesh> mesh)
 {
-	triangleShader->use();
-	manager->get(handle)->render();
+	shaderManager->get(shader)->use();
+	meshManager->get(mesh)->render();
 }
