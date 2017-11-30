@@ -2,10 +2,22 @@
 
 using namespace ENGINE;
 
+//Triangle
+//float vertices[] = {
+//	 0.0,  0.5, 0.0,
+//	-0.5, -0.5, 0.0,
+//	 0.5, -0.5, 0.0
+//};
+
+//Cube
 float vertices[] = {
-	 0.0,  0.5, 0.0,
-	-0.5, -0.5, 0.0,
-	 0.5, -0.5, 0.0
+	// positions         // texture coords
+	0.5f,  0.5f, 0.0f,   1.0f, 1.0f, // top right
+	0.5f, -0.5f, 0.0f,   1.0f, 0.0f, // bottom right
+   -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, // bottom left
+   -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, // bottom left
+   -0.5f,  0.5f, 0.0f,   0.0f, 1.0f, // top left 
+    0.5f,  0.5f, 0.0f,   1.0f, 1.0f // top right
 };
 
 Mesh::Mesh()
@@ -13,7 +25,7 @@ Mesh::Mesh()
 	//Setup vertex
 	vertexDescriptor = new VertexDescriptor();
 	vertexDescriptor->addComponent(VertexComponentDescriptor::VertexComponentType::VC_POSITION_3F);
-	//vertexDescriptor->addComponent(VertexComponentDescriptor::VertexComponentType::VC_NORMALS_3F);
+	vertexDescriptor->addComponent(VertexComponentDescriptor::VertexComponentType::VC_TEXCOORDS_2F);
 	
 	setupMesh();
 }
@@ -52,4 +64,39 @@ void Mesh::setupMesh()
 	//VAOs requires a call to glBindVertexArray anyways so we generally don't unbind VAOs (nor VBOs) when it's not directly necessary.
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
+}
+
+unsigned int Mesh::loadTexture(ImageManager::HandleType imageHandle_)
+{
+	unsigned int textureID;
+	glGenTextures(1, &textureID);
+
+	if (ImageManager::getInstance()->getImage(imageHandle_)->getImage())
+	{
+		glBindTexture(GL_TEXTURE_2D, textureID);
+		glTexImage2D(GL_TEXTURE_2D, 0, ImageManager::getInstance()->getImage(imageHandle_)->getFormat(),
+			ImageManager::getInstance()->getImage(imageHandle_)->getWidth(),
+			ImageManager::getInstance()->getImage(imageHandle_)->getHeight(),
+			0,
+			ImageManager::getInstance()->getImage(imageHandle_)->getFormat(),
+			GL_UNSIGNED_BYTE,
+			ImageManager::getInstance()->getImage(imageHandle_)->getImage());
+		glGenerateMipmap(GL_TEXTURE_2D);
+
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, ImageManager::getInstance()->getImage(imageHandle_)->getFormat() == GL_RGBA ? GL_CLAMP_TO_EDGE : GL_REPEAT); //Depending on the format, choose repeat or clamp to edge
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, ImageManager::getInstance()->getImage(imageHandle_)->getFormat() == GL_RGBA ? GL_CLAMP_TO_EDGE : GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+		//stbi_set_flip_vertically_on_load(true); //Flippy
+
+		stbi_image_free(ImageManager::getInstance()->getImage(imageHandle_)->getImage());
+	}
+	else
+	{
+		std::cout << "Texture failed to load" << std::endl;
+		stbi_image_free(ImageManager::getInstance()->getImage(imageHandle_)->getImage());
+	}
+	glBindTexture(GL_TEXTURE_2D, 0); //As a precaution, unbind the texture after it has been created
+	return textureID;
 }

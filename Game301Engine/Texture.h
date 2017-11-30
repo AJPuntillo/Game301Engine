@@ -31,8 +31,8 @@ namespace ENGINE {
 		void setName(std::string& name_) { m_imageName = name_; };
 
 	private:
-		std::string	m_imageName = nullptr;
-		unsigned char* imageData = 0;
+		std::string	m_imageName;
+		unsigned char* imageData;
 		int m_width = 0;
 		int m_height = 0;
 		int m_format = 0;

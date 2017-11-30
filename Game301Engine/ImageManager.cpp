@@ -23,17 +23,17 @@ ImageManager* ImageManager::getInstance()
 	return m_instance;
 }
 
-ImageManager::HandleType ImageManager::loadFile(std::string& resName_, std::string& fileName_)
+ImageManager::HandleType ImageManager::loadFile(std::string resName_, std::string path_)
 {
 	ImageManager::HandleType result;
 
-	Texture* img = new Texture(fileName_);
+	Texture* img = new Texture(path_);
 	result = loadImage(resName_, img);
 
 	return result;
 }
 
-ImageManager::HandleType ImageManager::loadImage(std::string& resName_, Texture* image)
+ImageManager::HandleType ImageManager::loadImage(std::string resName_, Texture* image)
 {
 	ImageManager::HandleType result;
 
@@ -47,12 +47,12 @@ ImageManager::HandleType ImageManager::loadImage(std::string& resName_, Texture*
 	return result;
 }
 
-void ImageManager::releaseImage(std::string& name_)
+void ImageManager::releaseImage(std::string name_)
 {
 	m_imageResources.remove(name_);
 }
 
-void ImageManager::deleteImage(std::string& name_)
+void ImageManager::deleteImage(std::string name_)
 {
 	Texture *img = getImage(name_);
 	m_imageResources.remove(name_);

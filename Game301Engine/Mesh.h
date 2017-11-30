@@ -14,6 +14,7 @@
 
 #include "Vertex.h"
 #include "Shader.h"
+#include "ImageManager.h"
 
 #include <string>
 #include <fstream>
@@ -29,6 +30,7 @@ namespace ENGINE {
 		Mesh();
 
 		void render();
+		unsigned int loadTexture(ImageManager::HandleType imageHandle_);
 
 		//Vertex Data
 		VertexDescriptor* vertexDescriptor;

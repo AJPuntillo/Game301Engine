@@ -6,6 +6,7 @@
 #include <Game301Engine/ResourceManager.h>
 #include <Game301Engine/OpenGLRenderer.h>
 #include <Game301Engine/Mesh.h>
+#include <Game301Engine/ImageManager.h>
 
 class Scene01 : public ENGINE::SceneInterface
 {
@@ -34,6 +35,12 @@ private:
 	//Resource Handles
 	ENGINE::ResourceHandle<ENGINE::Mesh> triangleHandle;
 	ENGINE::ResourceHandle<ENGINE::Shader> shaderHandle;
+
+	//Image Manager Handles
+	ENGINE::ImageManager::HandleType crateImage;
+
+	//Texture Data
+	unsigned int m_texture;
 };
 
 #endif

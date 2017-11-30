@@ -15,10 +15,10 @@ namespace ENGINE {
 
 		typedef ResourceHandle<Texture>	HandleType;
 
-		ImageManager::HandleType loadFile(std::string& resName_, std::string& fileName_);
-		ImageManager::HandleType loadImage(std::string& resName_, Texture* image);
-		void releaseImage(std::string& name_);
-		void deleteImage(std::string& name_);
+		ImageManager::HandleType loadFile(std::string resName_, std::string path_);
+		ImageManager::HandleType loadImage(std::string resName_, Texture* image);
+		void releaseImage(std::string name_);
+		void deleteImage(std::string name_);
 		void clear();
 
 		//Getters
@@ -28,8 +28,6 @@ namespace ENGINE {
 		ImageManager::HandleType nameToHandle(const std::string& name_);
 
 		private:
-		ImageManager() {}
-
 		ResourceManager<Texture> m_imageResources;
 		static ImageManager* m_instance;
 

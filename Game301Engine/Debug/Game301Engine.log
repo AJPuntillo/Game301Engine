@@ -1,4 +1,9 @@
-﻿  Image.cpp
+﻿  Mesh.cpp
+  Generating Code...
+d:\year 3 - semester 5\game 301 - game engine design\game301engine\game301engine\texture.h(27): warning C4715: 'ENGINE::Texture::getFormat': not all control paths return a value
+  Compiling...
+  OpenGLRenderer.cpp
+  Generating Code...
 SDL2.lib(SDL2.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in opengl32.lib(OPENGL32.dll); second definition ignored
 SDL2.lib(SDL2.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
 SDL2_ttf.lib(SDL2_ttf.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in opengl32.lib(OPENGL32.dll); second definition ignored
@@ -16,6 +21,5 @@ glew32s.lib(glew.obj) : warning LNK4006: _wglewGetExtension@4 already defined in
 glew32s.lib(glew.obj) : warning LNK4006: _wglewInit@0 already defined in glew32.lib(glew32.dll); second definition ignored
 glew32s.lib(glew.obj) : warning LNK4006: _wglewIsSupported@4 already defined in glew32.lib(glew32.dll); second definition ignored
 ResourceManager.obj : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
-Image.obj : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
 Hashtable.obj : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
   Game301Engine.vcxproj -> D:\Year 3 - Semester 5\Game 301 - Game Engine Design\Game301Engine\Debug\Game301Engine.lib
