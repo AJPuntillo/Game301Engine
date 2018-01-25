@@ -31,6 +31,11 @@ void DemoApp::onEnd()
 	//Empty
 }
 
+void DemoApp::processInput()
+{
+	m_currentScene->processInput();
+}
+
 void DemoApp::update()
 {
 	m_currentScene->update();

@@ -14,7 +14,6 @@
 
 #include "Vertex.h"
 #include "Shader.h"
-#include "ImageManager.h"
 
 #include <string>
 #include <fstream>
@@ -30,16 +29,19 @@ namespace ENGINE {
 		Mesh();
 
 		void render();
-		unsigned int loadTexture(ImageManager::HandleType imageHandle_);
 
 		//Vertex Data
 		VertexDescriptor* vertexDescriptor;
+
+		//Getters
+		std::vector<float> getVertices() { return verts; }
 
 	private:
 		void setupMesh();
 
 		//Render data
 		GLuint m_VBO, m_VAO;
+		std::vector<float> verts;
 	};
 
 }

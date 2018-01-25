@@ -10,10 +10,11 @@ class DemoApp : public ENGINE::GameInterface
 {
 public:
 	DemoApp();
-	~DemoApp();
+	virtual ~DemoApp();
 
 	virtual bool onStart() override;
 	virtual void onEnd() override;
+	virtual void processInput() override;
 	virtual void update() override;
 	virtual void preRender() override;
 	virtual void render() override;

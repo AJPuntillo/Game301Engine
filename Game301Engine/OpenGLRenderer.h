@@ -8,29 +8,35 @@
 #ifndef OPENGLRENDERER_H
 #define OPENGLRENDERER_H
 
-#include "ResourceManager.h"
-#include "Mesh.h"
+#include "AbstractRenderer.h"
+#include "GameObject.h"
+#include "ModelManager.h"
+#include "EffectedModel.h"
 #include "Vertex.h"
+#include "Window.h"
+#include "MatrixStack.h"
+#include "ModelLoader.h"
 
 namespace ENGINE
 {
 
-	class OpenGLRenderer
+	class OpenGLRenderer : AbstractRenderer
 	{
 	public:
 		OpenGLRenderer();
-		~OpenGLRenderer();
+		virtual ~OpenGLRenderer();
 
-		void renderPrimitive(ResourceHandle<Shader> shader, ResourceHandle<Mesh> mesh);
+		void render(GameObject* obj_);
+		void renderSceneGraph(SceneNode* rootNode_);
+		void renderSceneNode(SceneNode* sceneNode_);
+		
+		//Post/Pre render calls
+		void clearBuffers(glm::vec4 clearColour_ = glm::vec4(0.1f, 0.1f, 0.1f, 1.0f)); //Optional clear colour
+		void swapBuffers(Window* window_);
 
-		//Getters
-		ResourceManager<Mesh>* getMeshManager() { return meshManager; }
-		ResourceManager<Shader>* getShaderManager() { return shaderManager; }
 
 	private:
-		//Resource Managers
-		ResourceManager<Mesh>* meshManager;
-		ResourceManager<Shader>* shaderManager;
+		MatrixStack matStk;
 	};
 
 }

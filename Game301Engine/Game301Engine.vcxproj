@@ -89,7 +89,7 @@
       <SubSystem>Windows</SubSystem>
     </Link>
     <Lib>
-      <AdditionalDependencies>opengl32.lib;SDL2.lib;SDL2main.lib;SDL2test.lib;SDL2_ttf.lib;SDL2_mixer.lib;glew32.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;SDL2.lib;SDL2main.lib;SDL2test.lib;SDL2_ttf.lib;SDL2_mixer.lib;glew32.lib;glew32s.lib;assimp-vc140-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -143,14 +143,31 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BoundingVolume.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="EffectedModel.cpp" />
+    <ClCompile Include="Frustrum.cpp" />
     <ClCompile Include="GameEngine.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Hashtable.cpp" />
     <ClCompile Include="ImageManager.cpp" />
+    <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="LogManager.cpp" />
+    <ClCompile Include="Material.cpp" />
+    <ClCompile Include="MaterialManager.cpp" />
+    <ClCompile Include="MatrixStack.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="MeshLoader.cpp" />
+    <ClCompile Include="Model.cpp" />
+    <ClCompile Include="ModelLoader.cpp" />
+    <ClCompile Include="ModelManager.cpp" />
     <ClCompile Include="OpenGLRenderer.cpp" />
+    <ClCompile Include="Plane.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
+    <ClCompile Include="SceneGraph.cpp" />
+    <ClCompile Include="SceneNode.cpp" />
     <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="ShaderManager.cpp" />
     <ClCompile Include="stb_image.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Timer.cpp" />
@@ -159,17 +176,35 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AbstractRenderer.h" />
+    <ClInclude Include="BoundingVolume.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="EffectedModel.h" />
+    <ClInclude Include="Entity.h" />
+    <ClInclude Include="Frustrum.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="GameInterface.h" />
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="Hashtable.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="ImageManager.h" />
+    <ClInclude Include="InputManager.h" />
     <ClInclude Include="LogManager.h" />
+    <ClInclude Include="Material.h" />
+    <ClInclude Include="MaterialManager.h" />
+    <ClInclude Include="MatrixStack.h" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="MeshLoader.h" />
+    <ClInclude Include="Model.h" />
+    <ClInclude Include="ModelLoader.h" />
+    <ClInclude Include="ModelManager.h" />
     <ClInclude Include="OpenGLRenderer.h" />
+    <ClInclude Include="Plane.h" />
     <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="SceneGraph.h" />
     <ClInclude Include="SceneInterface.h" />
+    <ClInclude Include="SceneNode.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="ShaderManager.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Timer.h" />

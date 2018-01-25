@@ -21,8 +21,6 @@ namespace ENGINE
 	public:
 		AbstractRenderer() {};
 		virtual ~AbstractRenderer() {};
-
-		virtual void renderPrimitive(Shader* shader, ResourceHandle<Mesh> handle) = 0;
 	};
 
 }

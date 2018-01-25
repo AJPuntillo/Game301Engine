@@ -30,6 +30,10 @@ bool GameEngine::onStart()
 	m_window = new Window();
 	m_window->initialize("Demo", 800, 600, 0);
 
+	m_camera = new Camera();
+	m_inputManager = new InputManager();
+	m_sceneGraph = new SceneGraph();
+
 	//Check if the game interface exists
 	if (gameInterface != nullptr) {
 		if (gameInterface->onStart() == false) {
@@ -60,12 +64,46 @@ void GameEngine::run()
 
 	//Maintain the game loop while this engine is running
 	while (m_isRunning) {
+		processInput();
 		update();
 		preRender();
 		render();
 		postRender();
 		logMessage();
 	}
+}
+
+void GameEngine::processInput()
+{
+	//Update the InputManager
+	m_inputManager->update();
+
+	SDL_Event evnt;
+
+	//We toss in the event as a reference so that SDL_PollEvent will modifiy it internally and
+	//then leave it for us to look at.
+	while (SDL_PollEvent(&evnt)) {
+
+		if (evnt.type == SDL_QUIT)
+			m_isRunning = false;
+
+		if (evnt.type == SDL_KEYDOWN)
+			m_inputManager->pressKey(evnt.key.keysym.sym);
+
+		if (evnt.type == SDL_KEYUP)
+			m_inputManager->releaseKey(evnt.key.keysym.sym);
+
+		if (evnt.type == SDL_MOUSEBUTTONDOWN)
+			m_inputManager->pressKey(evnt.key.keysym.sym);
+
+		if (evnt.type == SDL_MOUSEBUTTONUP)
+			m_inputManager->releaseKey(evnt.key.keysym.sym);
+
+		if (evnt.type == SDL_MOUSEMOTION)
+			m_inputManager->setMouseCoords(evnt.motion.x, evnt.motion.y);
+	}
+
+	gameInterface->processInput();
 }
 
 void GameEngine::update()

@@ -13,6 +13,9 @@
 #include "GameInterface.h"
 #include "LogManager.h"
 #include "Timer.h"
+#include "SceneGraph.h"
+#include "Camera.h"
+#include "InputManager.h"
 
 namespace ENGINE
 {
@@ -29,6 +32,7 @@ namespace ENGINE
 		static void onEnd(); //Terminate
 
 		void run();
+		void processInput();
 		void update();
 		void preRender();
 		void render();
@@ -37,6 +41,9 @@ namespace ENGINE
 
 		//Getters
 		Window* getWindow() const { return m_window; };
+		SceneGraph* getSceneGraph() { return m_sceneGraph; };
+		Camera* getCamera() { return m_camera; }
+		InputManager* getInputManager() { return m_inputManager; }
 
 		//This is the pointer to the abstract Game/DemoApp
 		GameInterface* gameInterface = nullptr;
@@ -48,7 +55,12 @@ namespace ENGINE
 		static GameEngine* m_gameEngineInstance;
 		static Window* m_window;
 
+		SceneGraph* m_sceneGraph;
+		Camera* m_camera;
+
 		bool m_isRunning = false;
+
+		InputManager* m_inputManager;
 	};
 
 }
